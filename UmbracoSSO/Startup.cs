@@ -1,3 +1,6 @@
+using Umbraco.Cms.Core;
+using UmbracoSSO.OpenIDConnectExtend;
+
 namespace UmbracoSSO
 {
     public class Startup
@@ -34,10 +37,10 @@ namespace UmbracoSSO
             .AddOpenIdConnect("oidc", "OpenID Connect", options =>
             {   
                 options.Authority = "https://localhost:5001";
-                options.ClientId = "Umbraco-SSO";
+                options.ClientId = "Umbraco-MemberSSO";
                 options.ClientSecret = "secret";
 
-                options.CallbackPath = "/signin-oidc";
+                options.CallbackPath = "/signin-oidc-member";
                 options.Scope.Add("email");
 
                 options.ResponseType = "code";
@@ -48,13 +51,25 @@ namespace UmbracoSSO
 
                 options.SignInScheme = "temp-cookie";
             });
+            var scheme = $"{Constants.Security.BackOfficeExternalAuthenticationTypePrefix}oidc";
             services.AddUmbraco(_env, _config)
                 .AddBackOffice()
+                
                 .AddWebsite()
+                .AddOpenIdConnectAuthentication()
                 .AddComposers()
                 .Build();
 
-
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                   
+                });
+            });
         }
 
         /// <summary>
@@ -69,6 +84,7 @@ namespace UmbracoSSO
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors();
             app.UseUmbraco()
                 .WithMiddleware(u =>
                 {

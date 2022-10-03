@@ -77,10 +77,18 @@ namespace UmbracoSSO
                 //await memberManager.AddToRolesAsync(user, new[] { "User" });
                 await HttpContext.SignOutAsync("temp-cookie");
                 await signInManager.SignInAsync(identityUser, false);
+
             }
+            else { 
 
             // create the full membership session and cleanup the temporary cookie
 
+            
+            await HttpContext.SignOutAsync("temp-cookie");
+#pragma warning disable CS8604 // Possible null reference argument.
+            await signInManager.SignInAsync(user, false);
+            }
+#pragma warning restore CS8604 // Possible null reference argument. because we checked if if were null above
 
             // basic open redirect defense
             var returnUrl = result.Properties?.Items["returnUrl"];
