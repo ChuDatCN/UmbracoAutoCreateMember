@@ -1,0 +1,18 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@using Umbraco.Cms.Core
+@using Umbraco.Cms.Core.Security
+@using Umbraco.Cms.Web.Website.Controllers
+@using Umbraco.Cms.Web.Website.Models
+@using Umbraco.Extensions
+@inherits Umbraco.Cms.Web.Common.Macros.PartialViewMacroPage
+
+
+
+
+@{
+    var Name = Model.GetParameterValue<string>("ten","Chưa điền");
+    var Email = Model.GetParameterValue<string>("email","Chưa điền");
+}
+<li> Name : @Name </li>
+<li> Email: @Email</li>
+<li> @Model.MacroParameters["anh"] </li>

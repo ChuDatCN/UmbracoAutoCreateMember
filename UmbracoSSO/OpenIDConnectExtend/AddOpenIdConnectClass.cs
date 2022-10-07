@@ -29,7 +29,7 @@ namespace UmbracoSSO.OpenIDConnectExtend
                                 options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                                 // pass configured options along
                                 options.Authority = "https://localhost:5001/";
-                                options.ClientId = "Umbraco-SSO";
+                                options.ClientId = "Umbraco-backoffice-SSO";
                                 options.ClientSecret = "secret";
                                 // Use the authorization code flow
                                 options.ResponseType = OpenIdConnectResponseType.Code;

@@ -1,0 +1,7 @@
+﻿<div ng-controller="Our.Umbraco.ImagePositionController">
+    <div class="radio" ng-repeat="position in positions" id="selectstatus-{{position.Name}}">
+        <label>
+            <input type="radio" name="position" ng-model="model.value" value="{{position.Name}}">{{position.Name}}
+        </label>
+    </div>
+</div>

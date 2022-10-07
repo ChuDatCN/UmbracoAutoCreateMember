@@ -1,0 +1,42 @@
+{
+  "propertyEditors": [
+    {
+      "alias": "Our.Umbraco.ImagePosition",
+      "name": "Image Position",
+      "isParameterEditor": true,
+      "editor": {
+        "view": "/App_Plugins/Our.Umbraco.ImagePosition/ImagePosition.html",
+        "valueType": "STRING"
+      },
+      "prevalues": {
+        "fields": [
+          {
+            "label": "Options",
+            "description": "Radio Button Options",
+            "key": "options",
+            "view": "textarea"
+          }
+        ]
+      },
+      "defaultConfig": {
+        "options": [
+          {
+            "Name": "Full Width"
+          },
+          {
+            "Name": "Left"
+          },
+          {
+            "Name": "Right"
+          },
+          {
+            "Name": "Center"
+          }
+        ]
+      }
+    }
+  ],
+  "javascript": [
+    "/App_Plugins/Our.Umbraco.ImagePosition/ImagePosition.controller.js"
+  ]
+}

@@ -1,4 +1,4 @@
-using Umbraco.Cms.Core;
+﻿using Umbraco.Cms.Core;
 using UmbracoSSO.OpenIDConnectExtend;
 
 namespace UmbracoSSO
@@ -54,9 +54,8 @@ namespace UmbracoSSO
             var scheme = $"{Constants.Security.BackOfficeExternalAuthenticationTypePrefix}oidc";
             services.AddUmbraco(_env, _config)
                 .AddBackOffice()
-                
                 .AddWebsite()
-                .AddOpenIdConnectAuthentication()
+                .AddOpenIdConnectAuthentication() //Backoffice SSO , bỏ đi nêu chưa triển khai
                 .AddComposers()
                 .Build();
 
